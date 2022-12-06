@@ -4,7 +4,7 @@ import { api } from "../config/urls"
 
 export default function PostDetailpage(){
 
-    const { postid } = useParams();
+    const { postid, userid } = useParams();
     const [post, setPost] = useState({});
 
     async function getPostData(postid){
@@ -15,9 +15,7 @@ export default function PostDetailpage(){
 
     useEffect(()=>{
         getPostData(postid);
-    }, [postid])
-
-    console.log(post);
+    }, [postid, userid])
 
     return <div>post content.</div>
 }

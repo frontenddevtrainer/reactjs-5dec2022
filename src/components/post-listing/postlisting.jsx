@@ -21,7 +21,7 @@ export default function PostListing(props) {
                 return <div style={styles.post} key={post.id}>
                     <h1 style={styles.postHeading}>{post.title}</h1>
                     <div>{post.body}</div>
-                    <div><Link to={`/posts/${post.id}`}>Read more</Link> </div>
+                    <div><Link to={`/posts/${post.id}/${post.userId}`}>Read more</Link> </div>
                 </div>
             })
         }
