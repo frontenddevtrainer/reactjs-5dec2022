@@ -9,6 +9,7 @@ import LoginForm from './components/loginform/loginform';
 
 import { Routes, Route, BrowserRouter } from "react-router-dom"
 import { Checkoutpage, Homepage, Notfoundpage, Offerspage, Productspage, PostDetailpage } from "./pages"
+import Userpage from './pages/user';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
                 <Route path='comments' element={<Checkoutpage/>}></Route>
                 <Route path='offers' element={<Offerspage/>}></Route>
             </Route>
+            <Route path='/user' element={<Userpage/>}/>
             <Route path='*' element={<Notfoundpage/>}/>
             
           </Routes>

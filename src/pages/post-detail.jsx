@@ -19,12 +19,15 @@ export default function PostDetailpage() {
         getPostData(postid);
     }, [postid, userid])
 
-    return <div>
-        <h2>{post.title}</h2>
-        {post.body}
-
-
-        <Accordion defaultActiveKey="0">
+    return <div className="container">
+        
+        <div className="row">
+            <div className="col">
+                <h2>{post.title}</h2>
+                {post.body}
+            </div>
+            <div className="col">
+            <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="0">
                 <Accordion.Header>Accordion Item #1</Accordion.Header>
                 <Accordion.Body>
@@ -50,11 +53,15 @@ export default function PostDetailpage() {
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
-
-        <div>
-            <Link to={`/posts/${post.id}/${post.userId}/comments`}>Comments</Link>
-            <Link to={`/posts/${post.id}/${post.userId}/offers`}>Offers</Link>
+            </div>
         </div>
-        <Outlet />
+
+        <div className="row">
+            <div className="col">
+                <Link to={`/posts/${post.id}/${post.userId}/comments`}>Comments</Link>
+                <Link to={`/posts/${post.id}/${post.userId}/offers`}>Offers</Link>
+            </div>
+            <div className="col"><Outlet /></div>
+        </div>
     </div>
 }
