@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { Form, Button, Container, Card, Row, Col, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom"
 
 import Axios from "axios";
 
@@ -7,7 +8,14 @@ import { api } from "../../config/urls"
 
 export default function LoginForm() {
 
-    const [form, setForm] = useState({ username: "", password: "" });
+    // This is for registering the user first time as we dont register page.
+    // useEffect(()=>{
+    //     Axios.post("http://localhost:3300/register", { email : "abc@abc.com", password : "1234" })
+    // }, [])
+
+    const [form, setForm] = useState({ email: "", password: "" });
+    const [serverError, setServerError] = useState();
+    const navigate = useNavigate();
     function handleChange(e) {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value })
@@ -17,11 +25,11 @@ export default function LoginForm() {
 
         const errors = {};
 
-        if (form.username === "") {
-            errors.username = "Username is required."
+        if (form.email === "") {
+            errors.email = "email is required."
         }
 
-        if (form.password.length < 6) {
+        if (form.email.length < 6) {
             errors.password = "Password length should be 6 or more."
         }
 
@@ -30,11 +38,16 @@ export default function LoginForm() {
     }, [form])
 
     async function handleSubmit(e) {
-        e.preventDefault();
-        // Write logic to make API or XHR or Ajax request.
-        const response = await Axios.post(api.login, form);
-        console.log(response);
-        console.log(form)
+        try {
+            e.preventDefault();
+            // Write logic to make API or XHR or Ajax request.
+            const response = await Axios.post(api.login, form);
+            const { accessToken } = response.data;
+            window.sessionStorage.setItem("access-token", accessToken);
+            navigate("/");
+        } catch (error) {
+            setServerError({ message: error.response.data })
+        }
     }
 
     return <div>
@@ -44,12 +57,15 @@ export default function LoginForm() {
                     <Card>
                         <Card.Header>Login Form</Card.Header>
                         <Card.Body>
+                            { serverError && <Alert variant="error" className="mt-3">
+                                    {serverError.message}
+                            </Alert>}
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                                    <Form.Label>Username</Form.Label>
-                                    <Form.Control type="text" name="username" onChange={handleChange} placeholder="Enter email" />
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control type="text" name="email" onChange={handleChange} placeholder="Enter email" />
                                     <Form.Text className="text-muted">
-                                        {validationErrors.username && <span>{validationErrors.username}</span>}
+                                        {validationErrors.email && <span>{validationErrors.email}</span>}
                                     </Form.Text>
                                 </Form.Group>
 
@@ -63,9 +79,6 @@ export default function LoginForm() {
 
                                 <Button variant="primary" type="submit">Login</Button>
                             </Form>
-                            <Alert variant="success" className="mt-3">
-                                <p>{JSON.stringify(form)}</p>
-                            </Alert>
                         </Card.Body>
                     </Card>
                 </Col>

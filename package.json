@@ -9,6 +9,7 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "json-server": "^0.17.1",
+    "json-server-auth": "^2.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
@@ -21,7 +22,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api-server": "json-server db.json --watch --port=3300"
+    "api-server": "json-server db.json --watch --port=3300 -m ./node_modules/json-server-auth"
   },
   "eslintConfig": {
     "extends": [
