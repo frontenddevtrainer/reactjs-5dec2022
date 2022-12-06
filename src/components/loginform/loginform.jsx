@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import Axios from "axios";
 
 import { api } from "../../config/urls"
+import { useUserContext } from "../../context/user";
 
 export default function LoginForm() {
 
@@ -20,6 +21,8 @@ export default function LoginForm() {
         const { name, value } = e.target;
         setForm({ ...form, [name]: value })
     }
+
+    const { setUser } = useUserContext()
 
     const validationErrors = useMemo(() => {
 
@@ -44,6 +47,7 @@ export default function LoginForm() {
             const response = await Axios.post(api.login, form);
             const { accessToken } = response.data;
             window.sessionStorage.setItem("access-token", accessToken);
+            setUser( { ...response.data  } )
             navigate("/");
         } catch (error) {
             setServerError({ message: error.response.data })
