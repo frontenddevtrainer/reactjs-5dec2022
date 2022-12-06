@@ -2,19 +2,18 @@ import React, { useEffect, useState } from "react";
 import PostListing from "../components/post-listing/postlisting";
 import { api } from "../config/urls"
 
-export default function Homepage(){
+export default function Homepage() {
 
     const [posts, setPosts] = useState([]);
 
+    async function getPostData() {
+        const response = await (await fetch(api.posts)).json()
+        setPosts(response);
+    }
+
     // componentDidMount
-    useEffect(()=>{
-        fetch(api.posts)
-        .then((response)=>{
-            return response.json()
-        })
-        .then((response)=>{
-            setPosts(response)
-        })
+    useEffect(() => {
+        getPostData();
     }, [])
 
     return <div>
