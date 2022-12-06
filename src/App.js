@@ -8,7 +8,7 @@ import CounterWithClass from './components/counterWithClass/counter';
 import LoginForm from './components/loginform/loginform';
 
 import { Routes, Route, BrowserRouter } from "react-router-dom"
-import { Checkoutpage, Homepage, Notfoundpage, Offerspage, Productspage } from "./pages"
+import { Checkoutpage, Homepage, Notfoundpage, Offerspage, Productspage, PostDetailpage } from "./pages"
 
 function App() {
 
@@ -27,7 +27,9 @@ function App() {
             <Route path='/products' element={<Productspage/>}/>
             <Route path='/offers' element={<Offerspage/>}/>
             <Route path='/checkout' element={<Checkoutpage/>}/>
+            <Route path='/posts/:postid' element={<PostDetailpage/>}/>
             <Route path='*' element={<Notfoundpage/>}/>
+            
           </Routes>
       </BrowserRouter>
       
