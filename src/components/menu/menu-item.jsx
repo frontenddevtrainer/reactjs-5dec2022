@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 
 const styles = {
     menuItem: {
@@ -16,6 +17,6 @@ export default function MenuItem(props) {
     const { menu } = props
 
     return <li style={styles.menuItem}>
-        <a href={menu.path}>{menu.title}</a>
+        <Link to={menu.path}>{menu.title}</Link>
     </li>
 }

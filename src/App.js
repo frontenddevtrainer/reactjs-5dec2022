@@ -7,6 +7,9 @@ import { useState } from 'react';
 import CounterWithClass from './components/counterWithClass/counter';
 import LoginForm from './components/loginform/loginform';
 
+import { Routes, Route, BrowserRouter } from "react-router-dom"
+import { Checkoutpage, Homepage, Offerspage, Productspage } from "./pages"
+
 function App() {
 
   const [ showCounter, setShowCounter ] = useState(false);
@@ -17,12 +20,27 @@ function App() {
 
   return (
     <div className="App">
-      <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
-      { showCounter && <Counter/>}
-      <button onClick={()=>{ setShowCounter(!showCounter) }}>Toggle Counter</button>
+      <BrowserRouter>
+        <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
+          <Routes>
+            <Route path='/' element={<Homepage/>}/>
+            <Route path='/products' element={<Productspage/>}/>
+            <Route path='/offers' element={<Offerspage/>}/>
+            <Route path='/checkout' element={<Checkoutpage/>}/>
+          </Routes>
+      </BrowserRouter>
+      
+      
+      
+      
+      
+      
+      
+      {/* { showCounter && <Counter/>} */}
+      {/* <button onClick={()=>{ setShowCounter(!showCounter) }}>Toggle Counter</button> */}
       {/* Demo code for class based component */}
       {/* <CounterWithClass applicationName={applicationName} /> */}
-      <LoginForm/>
+      {/* <LoginForm/> */}
     </div>
   );
 }
