@@ -1,5 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import PostListing from "../components/post-listing/postlisting";
+import { api } from "../config/urls"
 
 export default function Homepage(){
-    return <div>Homepage content.</div>
+
+    const [posts, setPosts] = useState([]);
+
+    // componentDidMount
+    useEffect(()=>{
+        fetch(api.posts)
+        .then((response)=>{
+            return response.json()
+        })
+        .then((response)=>{
+            setPosts(response)
+        })
+    }, [])
+
+    return <div>
+        <PostListing data={posts} />
+    </div>
 }
