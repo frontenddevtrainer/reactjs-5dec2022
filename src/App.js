@@ -27,7 +27,10 @@ function App() {
             <Route path='/products' element={<Productspage/>}/>
             <Route path='/offers' element={<Offerspage/>}/>
             <Route path='/checkout' element={<Checkoutpage/>}/>
-            <Route path='/posts/:postid/:userid' element={<PostDetailpage/>}/>
+            <Route path='/posts/:postid/:userid' element={<PostDetailpage/>}>
+                <Route path='comments' element={<Checkoutpage/>}></Route>
+                <Route path='offers' element={<Offerspage/>}></Route>
+            </Route>
             <Route path='*' element={<Notfoundpage/>}/>
             
           </Routes>

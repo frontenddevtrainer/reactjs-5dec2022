@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { api } from "../config/urls"
+import { Link, Outlet } from "react-router-dom"
 
 export default function PostDetailpage(){
 
@@ -17,5 +18,13 @@ export default function PostDetailpage(){
         getPostData(postid);
     }, [postid, userid])
 
-    return <div>post content.</div>
+    return <div>
+        <h2>{post.title}</h2>
+        {post.body}
+        <div>
+            <Link to={`/posts/${post.id}/${post.userId}/comments`}>Comments</Link>
+            <Link to={`/posts/${post.id}/${post.userId}/offers`}>Offers</Link>
+        </div>
+        <Outlet/>
+    </div>
 }
