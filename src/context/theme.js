@@ -8,7 +8,7 @@ const { Provider } = themeContext;
 const ThemeProvider = (props)=>{
     const {children} = props;
     const [theme, setTheme] = useState(defaultTheme)
-
+    // HOC - Higher Order Component
     return <Provider value={{ theme, setTheme }}>
         {children}
     </Provider>
