@@ -28,8 +28,8 @@ const offerSlice = createSlice({
             })
             
         },
-        addOffer(){
-
+        addOffer(state, action){
+            state.offers.push({ id: state.offers.length + 1, isActive: false, ...action.payload })
         }
     }
 })
