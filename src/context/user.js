@@ -1,8 +1,7 @@
 import { createContext, useContext, useState } from "react";
 
 const userContext = createContext();
-const { Provider, Consumer } = userContext;
-
+const { Provider } = userContext;
 
 function UserProvider(props){
     const { children } = props;

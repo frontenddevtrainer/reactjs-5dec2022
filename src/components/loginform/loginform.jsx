@@ -6,6 +6,7 @@ import Axios from "axios";
 
 import { api } from "../../config/urls"
 import { useUserContext } from "../../context/user";
+import { useTheme } from "../../context/theme";
 
 export default function LoginForm() {
 
@@ -23,6 +24,7 @@ export default function LoginForm() {
     }
 
     const { setUser } = useUserContext()
+    const { theme } = useTheme()
 
     const validationErrors = useMemo(() => {
 
@@ -58,7 +60,7 @@ export default function LoginForm() {
         <Container>
             <Row>
                 <Col md={8}>
-                    <Card>
+                    <Card style={{ backgroundColor: theme === "light" ? "white" : "grey" }}>
                         <Card.Header>Login Form</Card.Header>
                         <Card.Body>
                             { serverError && <Alert variant="error" className="mt-3">

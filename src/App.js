@@ -11,6 +11,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom"
 import { Checkoutpage, Homepage, Notfoundpage, Offerspage, Productspage, PostDetailpage } from "./pages"
 import Userpage from './pages/user';
 import { UserProvider } from './context/user';
+import { ThemeProvider } from './context/theme';
 
 function App() {
 
@@ -22,23 +23,25 @@ function App() {
 
   return (
     <div className="App">
-      <UserProvider>
-        <BrowserRouter>
-          <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
-          <Routes>
-            <Route path='/' element={<Homepage />} />
-            <Route path='/products' element={<Productspage />} />
-            <Route path='/offers' element={<Offerspage />} />
-            <Route path='/checkout' element={<Checkoutpage />} />
-            <Route path='/posts/:postid/:userid' element={<PostDetailpage />}>
-              <Route path='comments' element={<Checkoutpage />}></Route>
-              <Route path='offers' element={<Offerspage />}></Route>
-            </Route>
-            <Route path='/user' element={<Userpage />} />
-            <Route path='*' element={<Notfoundpage />} />
-          </Routes>
-        </BrowserRouter>
-      </UserProvider>
+      <ThemeProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
+            <Routes>
+              <Route path='/' element={<Homepage />} />
+              <Route path='/products' element={<Productspage />} />
+              <Route path='/offers' element={<Offerspage />} />
+              <Route path='/checkout' element={<Checkoutpage />} />
+              <Route path='/posts/:postid/:userid' element={<PostDetailpage />}>
+                <Route path='comments' element={<Checkoutpage />}></Route>
+                <Route path='offers' element={<Offerspage />}></Route>
+              </Route>
+              <Route path='/user' element={<Userpage />} />
+              <Route path='*' element={<Notfoundpage />} />
+            </Routes>
+          </BrowserRouter>
+        </UserProvider>
+      </ThemeProvider>
 
 
 
