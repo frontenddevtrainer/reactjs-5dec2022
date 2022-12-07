@@ -1,39 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit"
+import axios from "axios"
+import { api } from "../../config/urls"
 
 const offerSlice = createSlice({
     name: "offers",
     initialState: {
-        offers : [{
-            type: "Laptops",
-            percent: 50,
-            id: 1,
-            isActive: true
-        },
-        {
-            type: "Mobile",
-            percent: 30,
-            id: 2,
-            isActive: true
-        }]
+        offers: []
     },
     reducers: {
-        setOfferStatus(state, action){
-            const { payload } = action; 
-            
-            state.offers.forEach((offer)=>{
-                if(offer.id === payload.id)
-                    {
-                        offer.isActive = payload.status;
-                    }
-            })
-            
+        getOffers(state, action){
+            state.offers = action.payload;
         },
-        addOffer(state, action){
+        setOfferStatus(state, action) {
+            const { payload } = action;
+
+            state.offers.forEach((offer) => {
+                if (offer.id === payload.id) {
+                    offer.isActive = payload.status;
+                }
+            })
+
+        },
+        addOffer(state, action) {
             state.offers.push({ id: state.offers.length + 1, isActive: false, ...action.payload })
         }
     }
 })
 
-export const { addOffer, setOfferStatus } = offerSlice.actions;
+export const { addOffer, setOfferStatus, getOffers } = offerSlice.actions;
 
-export default offerSlice.reducer
+export default offerSlice.reducer;
+
+export  function getOffersAsync(data) {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(api.offers);
+            dispatch(getOffers(response.data))
+        } catch (error) {
+
+        }
+    }
+}

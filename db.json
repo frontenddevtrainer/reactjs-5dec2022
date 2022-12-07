@@ -1,4 +1,12 @@
 {
+  "offers": [
+    {
+      "type": "Laptops",
+      "percent": 50,
+      "isActive": false,
+      "id": 1
+    }
+  ],
   "users": [
     {
       "email": "abc@abc.com",
