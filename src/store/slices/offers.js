@@ -10,6 +10,31 @@ const getOffers = createAsyncThunk(
     }
 )
 
+const addOffer = createAsyncThunk(
+    "offers/addOffer",
+    async (offer) => {
+        const response = await axios.post(api.offers, { ...offer, isActive: false });
+        return response.data
+    }
+)
+
+const setOfferStatus = createAsyncThunk(
+    "offers/setOfferStatus",
+    async (offer) => {
+        const response = await axios.patch(`${api.offers}/${offer.id}`, { isActive: offer.status });
+        return response.data
+    }
+)
+
+const deleteOffer = createAsyncThunk(
+    "offers/deleteOffer",
+    async (id) => {
+        const response = await axios.delete(`${api.offers}/${id}`);
+        return response.data
+    }
+)
+
+
 const offerSlice = createSlice({
     name: "offers",
     initialState: {
@@ -17,18 +42,6 @@ const offerSlice = createSlice({
         loading: false,
     },
     reducers: {
-        setOfferStatus(state, action) {
-            const { payload } = action;
-
-            state.offers.forEach((offer) => {
-                if (offer.id === payload.id) {
-                    offer.isActive = payload.status;
-                }
-            })
-        },
-        addOffer(state, action) {
-            state.offers.push({ id: state.offers.length + 1, isActive: false, ...action.payload })
-        }
     },
     extraReducers: {
         [getOffers.pending] : (state)=>{ state.loading = true },
@@ -39,13 +52,46 @@ const offerSlice = createSlice({
         [getOffers.rejected] : (state)=>{
             state.loading = false;
         },
+        [addOffer.pending] : (state)=>{ state.loading = true },
+        [addOffer.fulfilled] : (state, { payload })=>{
+            state.loading = false;
+            state.offers.push(payload);
+        },
+        [addOffer.rejected] : (state)=>{
+            state.loading = false;
+        },
+        [setOfferStatus.pending] : (state)=>{ state.loading = true },
+        [setOfferStatus.fulfilled] : (state, { payload })=>{
+            state.loading = false;
+            state.offers.forEach((offer) => {
+                if (offer.id === payload.id) {
+                    offer.isActive = payload.isActive;
+                }
+            })
+        },
+        [setOfferStatus.rejected] : (state)=>{
+            state.loading = false;
+        },
+        [deleteOffer.pending] : (state)=>{ state.loading = true },
+        [deleteOffer.fulfilled] : (state, { payload })=>{
+            state.loading = false;
+            let indexToDelete = null
+            state.offers.forEach((offer, index) => {
+                if (offer.id === payload.id) {
+                    indexToDelete = index;
+                }
+            })
+
+            state.offers.splice(indexToDelete, 1);
+        },
+        [deleteOffer.rejected] : (state)=>{
+            state.loading = false;
+        },
     }
 })
 
 
-
-export const { addOffer, setOfferStatus } = offerSlice.actions;
-export { getOffers } 
+export { getOffers, addOffer, setOfferStatus, deleteOffer } 
 
 export default offerSlice.reducer;
 

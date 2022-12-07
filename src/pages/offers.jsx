@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setOfferStatus, addOffer, getOffers } from "../store/slices/offers"
+import { setOfferStatus, addOffer, getOffers, deleteOffer } from "../store/slices/offers"
 
 export default function Offerspage(){
 
@@ -33,6 +33,7 @@ export default function Offerspage(){
                                 dispatch(setOfferStatus({ id: offer.id, status: !offer.isActive }))
                             }}/>
                         </div>
+                        <button onClick={()=>{ dispatch(deleteOffer(offer.id)) }}>Delete Offer</button>
 
                     </li>
                 })
