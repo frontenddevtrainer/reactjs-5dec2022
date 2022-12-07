@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setOfferStatus, addOffer, getOffersAsync } from "../store/slices/offers"
+import { setOfferStatus, addOffer, getOffers } from "../store/slices/offers"
 
 export default function Offerspage(){
 
@@ -8,7 +8,7 @@ export default function Offerspage(){
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getOffersAsync())
+        dispatch(getOffers())
     }, [])
 
     const [form, setForm] = useState({});
