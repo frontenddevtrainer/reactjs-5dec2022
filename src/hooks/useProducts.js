@@ -2,13 +2,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { api } from "../config/urls"
 
-export default function useProducts(){
+export default function useProducts() {
 
     const [loading, setLoading] = useState(false);
     const [data, setData] = useState(null);
     const [error, setError] = useState();
 
-    async function getProducts(){
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    async function getProducts() {
         try {
             setLoading(true);
             const { data } = await axios.get(api.posts);
@@ -20,9 +22,17 @@ export default function useProducts(){
         }
     }
 
-    useEffect(()=>{
+    async function removeProduct(id) {
+        setIsDeleting(true);
+        const { data } = await axios.delete(`${api.posts}/${id}`);
+        setIsDeleting(false);
+        getProducts();
+    }
+
+    useEffect(() => {
         getProducts();
     }, [])
+    
 
-    return { loading, data, error };
+    return { loading, data, error, actions: { remove: { isDeleting, removeProduct } } };
 }
