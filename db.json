@@ -1,5 +1,18 @@
 {
-  "offers": [{ "type": "1", "discount": true, "id": 2, "isActive": true}, { "type": "1", "discount": true, "id": 1, "isActive": true}],
+  "offers": [
+    {
+      "type": "AWS Course",
+      "percent": 20,
+      "isActive": false,
+      "id": 8
+    },
+    {
+      "type": "ReactJS Course",
+      "percent": 20,
+      "isActive": false,
+      "id": 9
+    }
+  ],
   "users": [
     {
       "email": "abc@abc.com",

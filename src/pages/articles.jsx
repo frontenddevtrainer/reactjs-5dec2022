@@ -1,21 +1,35 @@
 import React, { useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql, useMutation } from "@apollo/client";
 
 const GET_OFFERS = gql`
     query GetOffers {
         offers {
             type,
             isActive
+            percent
             id
         }
     }`
+
+const ADD_OFFER = gql`
+mutation Mutation($offer: OfferInput) {
+    addOffer (offer: $offer) {
+      id,
+      isActive,
+      percent,
+      type
+    }
+  }`
 
 
 export default function Articlespage(){
 
 
 
-    const { data, loading, error } = useQuery(GET_OFFERS)
+    const { data, loading, error } = useQuery(GET_OFFERS);
+    const [ addOffer, { data: addOfferData, loading: addOfferLoading } ] = useMutation(ADD_OFFER, {
+        refetchQueries: [{ query: GET_OFFERS }]
+    });
 
     const offers = data && data.offers ? data.offers : [];
 
@@ -52,11 +66,13 @@ export default function Articlespage(){
         </ul>
         <form onSubmit={(e)=>{
             e.preventDefault();
-            
+            console.log(form);
+            addOffer({ variables: { offer: { isActive: false, type: form.type, percent : Number(form.percent) } } })
         }}>
             <input name="type" onChange={handleChange}/>
             <input name="percent" onChange={handleChange}/>
             <button type="submit">Add offer</button>
         </form>
+        { addOfferLoading && <span>Saving Record.</span> }
     </div>
 }
