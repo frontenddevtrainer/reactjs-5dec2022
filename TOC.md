@@ -126,6 +126,7 @@ Session End	7:00 PM
 - Push Application on Git
 - Deploy App on Nginx
 - Create Docker for React Application
+- Lazy load application.
 
 ### Module 9
 - Native Applications
