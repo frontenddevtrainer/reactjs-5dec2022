@@ -55,6 +55,11 @@ const offerSlice = createSlice({
         fetchOffersError(state){
             state.loading = false
         },
+        deleteOffersSuccess(state, action){
+            const { payload } = action
+            state.loading = false
+        },
+        
     },
     extraReducers: {
         [getOffers.pending] : (state)=>{ state.loading = true },
@@ -103,7 +108,7 @@ const offerSlice = createSlice({
     }
 })
 
-export const { fetchOffersPending, fetchOffersError, fetchOffersSuccess } = offerSlice.actions
+export const { fetchOffersPending, fetchOffersError, fetchOffersSuccess, deleteOffersSuccess } = offerSlice.actions
 
 export { getOffers, addOffer, setOfferStatus, deleteOffer } 
 

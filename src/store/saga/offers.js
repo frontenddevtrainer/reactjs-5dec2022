@@ -1,5 +1,5 @@
 import { put, call } from "redux-saga/effects";
-import { fetchOffersPending, fetchOffersError, fetchOffersSuccess } from "../slices/offers";
+import { fetchOffersPending, fetchOffersError, fetchOffersSuccess, deleteOffersSuccess } from "../slices/offers";
 import { api } from "../../config/urls"
 import axios from "axios";
 
@@ -18,5 +18,16 @@ export function * getOffers(){
 }
 
 export function * deleteOffer(action){
-    console.log(action);
+    try {
+
+        const offers = yield call(async ()=>{
+            const result = await (await axios.delete(`${api.offers}/${action.payload}`)).data
+            return result
+        })
+        yield getOffers()
+        yield put(deleteOffersSuccess(offers))
+        
+    } catch ({error}) {
+        yield put(fetchOffersError())
+    }
 }
