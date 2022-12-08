@@ -1,0 +1,1 @@
+export const GET_OFFERS_ACTION = "OFFERS/GET_OFFERS"

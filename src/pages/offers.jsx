@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { GET_OFFERS_ACTION } from "../store/saga/actions";
 import { setOfferStatus, addOffer, getOffers, deleteOffer } from "../store/slices/offers"
 
 export default function Offerspage(){
@@ -8,7 +9,9 @@ export default function Offerspage(){
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        dispatch(getOffers())
+        // dispatch(getOffers())
+        dispatch({ type: GET_OFFERS_ACTION })
+
     }, [])
 
     const [form, setForm] = useState({});

@@ -42,6 +42,11 @@ const offerSlice = createSlice({
         loading: false,
     },
     reducers: {
+        // for redux-saga
+        fetchOffers(state, action){
+            const { type, payload } = action
+            state.offers = payload;
+        }
     },
     extraReducers: {
         [getOffers.pending] : (state)=>{ state.loading = true },
@@ -90,6 +95,7 @@ const offerSlice = createSlice({
     }
 })
 
+export const { fetchOffers } = offerSlice.actions
 
 export { getOffers, addOffer, setOfferStatus, deleteOffer } 
 
