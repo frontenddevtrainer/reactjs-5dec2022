@@ -8,6 +8,8 @@ import { UserProvider } from './context/user';
 import { ThemeProvider } from './context/theme';
 import { LocalizationProvider } from './context/localization';
 import Store from "./store/store"
+import { ApolloProvider } from '@apollo/client';
+import { client } from "./graphql/client"
 
 function App() {
 
@@ -16,35 +18,31 @@ function App() {
 
   return (
     <div className="App">
-      <ReduxProvider store={Store}>
-        <LocalizationProvider>
-          <ThemeProvider>
-            <UserProvider>
-              <BrowserRouter>
-                <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
-                <Routes>
-                  <Route path='/' element={<Homepage />} />
-                  <Route path='/products' element={<Productspage />} />
-                  <Route path='/offers' element={<Offerspage />} />
-                  <Route path='/checkout' element={<Checkoutpage />} />
-                  <Route path='/posts/:postid/:userid' element={<PostDetailpage />}>
-                    <Route path='comments' element={<Checkoutpage />}></Route>
-                    <Route path='offers' element={<Offerspage />}></Route>
-                  </Route>
-                  <Route path='/user' element={<Userpage />} />
-                  <Route path='*' element={<Notfoundpage />} />
-                </Routes>
-              </BrowserRouter>
-            </UserProvider>
-          </ThemeProvider>
-        </LocalizationProvider>
-      </ReduxProvider>
-
-
-
-
-
-
+      <ApolloProvider client={client}>
+        <ReduxProvider store={Store}>
+          <LocalizationProvider>
+            <ThemeProvider>
+              <UserProvider>
+                <BrowserRouter>
+                  <Header isAdmin={isAdmin} applicationName={applicationName}></Header>
+                  <Routes>
+                    <Route path='/' element={<Homepage />} />
+                    <Route path='/products' element={<Productspage />} />
+                    <Route path='/offers' element={<Offerspage />} />
+                    <Route path='/checkout' element={<Checkoutpage />} />
+                    <Route path='/posts/:postid/:userid' element={<PostDetailpage />}>
+                      <Route path='comments' element={<Checkoutpage />}></Route>
+                      <Route path='offers' element={<Offerspage />}></Route>
+                    </Route>
+                    <Route path='/user' element={<Userpage />} />
+                    <Route path='*' element={<Notfoundpage />} />
+                  </Routes>
+                </BrowserRouter>
+              </UserProvider>
+            </ThemeProvider>
+          </LocalizationProvider>
+        </ReduxProvider>
+      </ApolloProvider>
 
       {/* { showCounter && <Counter/>} */}
       {/* <button onClick={()=>{ setShowCounter(!showCounter) }}>Toggle Counter</button> */}
