@@ -43,10 +43,18 @@ const offerSlice = createSlice({
     },
     reducers: {
         // for redux-saga
-        fetchOffers(state, action){
-            const { type, payload } = action
+        
+        fetchOffersPending(state){
+            state.loading = true
+        },
+        fetchOffersSuccess(state, action){
+            const { payload } = action
+            state.loading = false
             state.offers = payload;
-        }
+        },
+        fetchOffersError(state){
+            state.loading = false
+        },
     },
     extraReducers: {
         [getOffers.pending] : (state)=>{ state.loading = true },
@@ -95,7 +103,7 @@ const offerSlice = createSlice({
     }
 })
 
-export const { fetchOffers } = offerSlice.actions
+export const { fetchOffersPending, fetchOffersError, fetchOffersSuccess } = offerSlice.actions
 
 export { getOffers, addOffer, setOfferStatus, deleteOffer } 
 

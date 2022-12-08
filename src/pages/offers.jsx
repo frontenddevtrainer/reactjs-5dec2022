@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { GET_OFFERS_ACTION } from "../store/saga/actions";
+import { DELETE_OFFER_ACTION, GET_OFFERS_ACTION } from "../store/saga/actions";
 import { setOfferStatus, addOffer, getOffers, deleteOffer } from "../store/slices/offers"
 
 export default function Offerspage(){
@@ -36,7 +36,7 @@ export default function Offerspage(){
                                 dispatch(setOfferStatus({ id: offer.id, status: !offer.isActive }))
                             }}/>
                         </div>
-                        <button onClick={()=>{ dispatch(deleteOffer(offer.id)) }}>Delete Offer</button>
+                        <button onClick={()=>{ dispatch({ type: DELETE_OFFER_ACTION, payload: offer.id }) }}>Delete Offer</button>
 
                     </li>
                 })

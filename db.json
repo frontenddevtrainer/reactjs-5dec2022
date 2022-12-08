@@ -1,5 +1,10 @@
 {
-  "offers": [],
+  "offers": [
+    { "type": "Laptop", "percent": 40, "isActive" : true, "id" : 1 },
+    { "type": "TV", "percent": 40, "isActive" : true, "id" : 2 },
+    { "type": "iphone", "percent": 40, "isActive" : true, "id" : 3 },
+    { "type": "table", "percent": 40, "isActive" : true, "id" : 4 }
+  ],
   "users": [
     {
       "email": "abc@abc.com",
