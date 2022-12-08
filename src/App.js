@@ -10,6 +10,7 @@ import { LocalizationProvider } from './context/localization';
 import Store from "./store/store"
 import { ApolloProvider } from '@apollo/client';
 import { client } from "./graphql/client"
+import Articlespage from './pages/articles';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                     <Route path='/products' element={<Productspage />} />
                     <Route path='/offers' element={<Offerspage />} />
                     <Route path='/checkout' element={<Checkoutpage />} />
+                    <Route path='/articles' element={<Articlespage />} />
                     <Route path='/posts/:postid/:userid' element={<PostDetailpage />}>
                       <Route path='comments' element={<Checkoutpage />}></Route>
                       <Route path='offers' element={<Offerspage />}></Route>
