@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit test for: Counter Component Snaopshot test 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="counter-decrease-button"
+    >
+      -
+    </button>
+    <span
+      data-testid="counter-value-text"
+      style="color: red;"
+    >
+      0
+    </span>
+    <button
+      data-testid="counter-increase-button"
+    >
+      +
+    </button>
+    <p>
+      Current time: 
+    </p>
+  </div>
+</DocumentFragment>
+`;

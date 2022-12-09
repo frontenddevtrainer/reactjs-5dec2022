@@ -44,4 +44,11 @@ describe("Unit test for: Counter Component", ()=>{
 
     })
 
+    test("Snaopshot test", ()=>{
+        const { asFragment } = render(<Counter/>);
+        const content = asFragment();
+        expect(content).toMatchSnapshot();
+
+    })
+
 })
