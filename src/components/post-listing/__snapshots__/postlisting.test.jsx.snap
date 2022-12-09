@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot testing for PostListing Render PostListing with data 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      style="padding: 10px;"
+    >
+      <h1
+        style="font-size: 20px; margin: 0px 0px 10px 0px;"
+      >
+        mock title
+      </h1>
+      <div>
+        mock content
+      </div>
+      <div>
+        <a
+          href="/posts/1/1"
+        >
+          Read more
+        </a>
+         
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Snapshot testing for PostListing Render PostListing without data 1`] = `
+<DocumentFragment>
+  <div>
+    No records found!.
+  </div>
+</DocumentFragment>
+`;

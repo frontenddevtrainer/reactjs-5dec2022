@@ -13,7 +13,13 @@ const styles = {
 
 export default function PostListing(props) {
 
-    const { data } = props
+    const { data } = props;
+    
+
+    if(!data)
+        {
+            return <div>No records found!.</div>
+        }
 
     return <div>
         {
