@@ -38,13 +38,15 @@ export default function ProductListing(props) {
 
 
     if (!data) {
-        return <div className="no-records">No records found!.</div>
+        return <div className="no-records">No records found!</div>
     }
+
+    console.log(data)
 
     return <div>
         {
             data && data.length > 0 && data.map((post) => {
-                return <div style={styles.post} key={post.id}>
+                return <div data-testid="product-item" style={styles.post} key={post.id}>
                     <h1 style={styles.postHeading}>{post.title}</h1>
                     <div>{post.body}</div>
                     <div><Link to={`/posts/${post.id}/${post.userId}`}>Read more</Link> </div>

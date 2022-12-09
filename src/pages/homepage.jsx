@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import PostListing from "../components/post-listing/postlisting";
-import RegisterForm from "../components/registerform/registerform";
 import { api } from "../config/urls";
+
+const RegisterFormLazy = React.lazy(()=> import("../components/registerform/registerform") )
+
 
 export default function Homepage() {
   const [posts, setPosts] = useState([]);
@@ -22,7 +24,9 @@ export default function Homepage() {
       <div className="container">
         <div className="row">
           <div className="col">
-            <RegisterForm />
+            <Suspense fallback={<div>Loading register form.</div>}>
+              <RegisterFormLazy/>
+            </Suspense>
           </div>
         </div>
       </div>

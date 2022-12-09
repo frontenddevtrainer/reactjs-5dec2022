@@ -28,7 +28,7 @@ export default function Header(props){
     return <div style={styles.header} className="application-header">
         <Logo applicationName={props.applicationName} />
         {!userDetails && <Link to="/user">Login</Link>}
-        {userDetails && <Menu />}
+        <Menu />
         <span>{userDetails && userDetails.user && userDetails.user.email}</span>
         <select onChange={(e)=>{ setTheme(e.target.value) }}>
             <option value="light">Light</option>
