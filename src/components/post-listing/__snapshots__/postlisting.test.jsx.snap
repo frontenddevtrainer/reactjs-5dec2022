@@ -9,10 +9,10 @@ exports[`Snapshot testing for PostListing Render PostListing with data 1`] = `
       <h1
         style="font-size: 20px; margin: 0px 0px 10px 0px;"
       >
-        mock title
+        This is a title
       </h1>
       <div>
-        mock content
+        This is content
       </div>
       <div>
         <a
