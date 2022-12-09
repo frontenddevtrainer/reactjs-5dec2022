@@ -27,9 +27,9 @@ export default function Counter(){
     }, [])
 
     return <div>
-        <button data-testid="counter-decrease-button" onClick={()=>{ setCounter( counter - 1 ) }}>-</button>
-        <span data-testid="counter-value-text" style={styles.counter}>{ counter }</span>
-        <button data-testid="counter-increase-button" onClick={()=>{ setCounter( counter + 1 ) }} >+</button>
+        <button data-testid="counter_decrease_button" onClick={()=>{ setCounter( counter - 1 ) }}>-</button>
+        <strong data-testid="counter_value_text" style={styles.counter}>{ counter }</strong>
+        <button data-testid="counter_increase_button" onClick={()=>{ setCounter( counter + 1 ) }} >+</button>
         <p>Current time: {currentTime}</p>
     </div>
 }

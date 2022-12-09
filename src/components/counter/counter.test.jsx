@@ -11,7 +11,7 @@ describe("Unit test for: Counter Component", ()=>{
 
     test("Load counter with 0", ()=>{
         render(<Counter/>);
-        const counterValue = screen.getByTestId("counter-value-text");
+        const counterValue = screen.getByTestId("counter_value_text");
         expect(counterValue.textContent).toEqual("0");
 
     })
@@ -19,8 +19,8 @@ describe("Unit test for: Counter Component", ()=>{
     test("Decrease counter value", ()=>{
         render(<Counter/>);
 
-        const decreaseButton = screen.getByTestId("counter-decrease-button");
-        const counterValue = screen.getByTestId("counter-value-text");
+        const decreaseButton = screen.getByTestId("counter_decrease_button");
+        const counterValue = screen.getByTestId("counter_value_text");
 
        act(()=>{
         decreaseButton.click()
@@ -33,8 +33,8 @@ describe("Unit test for: Counter Component", ()=>{
     test("Increse counter value", ()=>{
         render(<Counter/>);
 
-        const increaseButton = screen.getByTestId("counter-increase-button");
-        const counterValue = screen.getByTestId("counter-value-text");
+        const increaseButton = screen.getByTestId("counter_increase_button");
+        const counterValue = screen.getByTestId("counter_value_text");
 
        act(()=>{
         increaseButton.click()
@@ -48,7 +48,26 @@ describe("Unit test for: Counter Component", ()=>{
         const { asFragment } = render(<Counter/>);
         const content = asFragment();
         expect(content).toMatchSnapshot();
+    })
 
+    test("Snaopshot test after increasing the value", ()=>{
+        const { asFragment } = render(<Counter/>);
+        const increaseButton = screen.getByTestId("counter_increase_button");
+        act(()=>{
+            increaseButton.click()
+           })
+        const content = asFragment();
+        expect(content).toMatchSnapshot();
+    })
+
+    test("Snaopshot test after decreasing the value", ()=>{
+        const { asFragment } = render(<Counter/>);
+        const increaseButton = screen.getByTestId("counter_decrease_button");
+        act(()=>{
+            increaseButton.click()
+           })
+        const content = asFragment();
+        expect(content).toMatchSnapshot();
     })
 
 })

@@ -4,18 +4,70 @@ exports[`Unit test for: Counter Component Snaopshot test 1`] = `
 <DocumentFragment>
   <div>
     <button
-      data-testid="counter-decrease-button"
+      data-testid="counter_decrease_button"
     >
       -
     </button>
-    <span
-      data-testid="counter-value-text"
+    <strong
+      data-testid="counter_value_text"
       style="color: red;"
     >
       0
-    </span>
+    </strong>
     <button
-      data-testid="counter-increase-button"
+      data-testid="counter_increase_button"
+    >
+      +
+    </button>
+    <p>
+      Current time: 
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Unit test for: Counter Component Snaopshot test after decreasing the value 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="counter_decrease_button"
+    >
+      -
+    </button>
+    <strong
+      data-testid="counter_value_text"
+      style="color: blue;"
+    >
+      -1
+    </strong>
+    <button
+      data-testid="counter_increase_button"
+    >
+      +
+    </button>
+    <p>
+      Current time: 
+    </p>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Unit test for: Counter Component Snaopshot test after increasing the value 1`] = `
+<DocumentFragment>
+  <div>
+    <button
+      data-testid="counter_decrease_button"
+    >
+      -
+    </button>
+    <strong
+      data-testid="counter_value_text"
+      style="color: blue;"
+    >
+      1
+    </strong>
+    <button
+      data-testid="counter_increase_button"
     >
       +
     </button>
